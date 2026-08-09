@@ -1,5 +1,5 @@
 // Incrementa CACHE_NAME ad ogni nuovo deploy per evitare contenuti obsoleti su Android
-const CACHE_NAME = 'meduse-merge-v1';
+const CACHE_NAME = 'meduse-merge-v2';
 const ASSETS = [
   './',
   './index.html',

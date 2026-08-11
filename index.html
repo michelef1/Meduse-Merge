@@ -104,17 +104,28 @@
 
   .topbar2{
     width:100%; max-width:420px;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 0.9em; margin-bottom:0.3em;
+    display:flex; align-items:center; justify-content:center;
+    padding:0 0.9em; margin-bottom:0.4em;
   }
   .nextWrap{
-    display:flex; align-items:center; gap:0.5em; font-size:0.75em; opacity:0.85;
+    display:flex; align-items:center; gap:0.7em;
+  }
+  .nextLabel{
+    font-family:'Quicksand', sans-serif; font-weight:700;
+    font-size:0.9em; color:var(--perla); opacity:0.75;
+    text-transform:uppercase; letter-spacing:0.04em;
   }
   #nextPreview{
-    width:2.1em; height:2.1em; border-radius:50%;
+    width:2.5em; height:2.5em; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
     background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.5), transparent 60%), var(--bioluce);
-    box-shadow:0 0 14px rgba(76,224,196,0.55);
+    box-shadow:0 0 16px rgba(76,224,196,0.6), 0 0 0 3px rgba(255,255,255,0.08);
+    flex:0 0 auto;
+  }
+  .nextName{
+    font-family:'Fredoka', sans-serif; font-weight:600;
+    font-size:1em; color:var(--bioluce);
+    text-shadow:0 0 10px rgba(76,224,196,0.5);
   }
 
   #tankWrap{
@@ -314,10 +325,10 @@
 
   <div class="topbar2">
     <div class="nextWrap">
-      <span>Prossima:</span>
+      <span class="nextLabel">Prossima</span>
       <div id="nextPreview"></div>
+      <span class="nextName" id="levelLabel">Medusa Bebè</span>
     </div>
-    <div style="font-size:0.75em; opacity:0.8;" id="levelLabel">Livello 1 / 8</div>
   </div>
 
   <div id="tankWrap">

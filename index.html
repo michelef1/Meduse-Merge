@@ -1172,14 +1172,15 @@
     var bodies = getMovableBodies();
     var anyOver = false;
     bodies.forEach(function(b){
-      var speed = Math.hypot(b.velocity.x, b.velocity.y);
       var top = b.position.y - b.circleRadius;
-      if(top < TOP_LINE && speed < 0.35){
+      if(top < TOP_LINE){
+        // sopra la linea: accumula, indipendentemente da urti/vibrazioni momentanee
         b.plugin.restTimer = (b.plugin.restTimer||0) + 16.6;
-        if(b.plugin.restTimer > GRACE_MS) anyOver = true;
       } else {
-        b.plugin.restTimer = 0;
+        // sotto la linea: scarica gradualmente (non azzera di colpo per un urto passeggero)
+        b.plugin.restTimer = Math.max(0, (b.plugin.restTimer||0) - 40);
       }
+      if(b.plugin.restTimer > GRACE_MS) anyOver = true;
     });
     if(anyOver && !gameOver) triggerGameOver();
   }

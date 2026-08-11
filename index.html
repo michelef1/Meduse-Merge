@@ -222,8 +222,8 @@
     padding:0.4em;
     display:none;
     flex-direction:column;
-    min-width:14.5em;
-    max-width:16em;
+    min-width:15.5em;
+    max-width:17em;
     box-shadow:0 8px 24px rgba(0,0,0,0.4);
   }
   #menuDropdown.show{ display:flex; }
@@ -234,7 +234,17 @@
   }
   #menuDropdown button:active{ background:rgba(76,224,196,0.15); }
 
-  .musicSettings{ padding:0.2em 0.7em 0.5em; border-bottom:1px solid rgba(76,224,196,0.15); margin-bottom:0.3em; }
+  .musicSettings{ padding:0.4em 0.7em 0.5em; border-bottom:1px solid rgba(76,224,196,0.15); margin-bottom:0.3em; }
+  .musicSelectRow{ display:flex; flex-direction:column; gap:0.3em; margin-bottom:0.5em; }
+  .musicSelectRow label{ font-size:0.75em; opacity:0.85; font-weight:700; color:var(--bioluce); }
+  .musicSelectRow select{
+    background:rgba(255,255,255,0.08); border:1px solid rgba(76,224,196,0.35);
+    color:var(--perla); padding:0.4em 0.5em; border-radius:0.5em;
+    font-family:'Quicksand', sans-serif; font-size:0.8em; outline:none;
+    cursor:pointer;
+  }
+  .musicSelectRow select option{ background:var(--notte); color:var(--perla); }
+
   .sliderRow{ display:flex; align-items:center; gap:0.5em; padding:0.28em 0; }
   .sliderRow span:first-child{ font-size:0.72em; opacity:0.8; width:5.4em; flex:0 0 auto; }
   .sliderRow input[type=range]{ flex:1; accent-color:var(--bioluce); height:1.2em; }
@@ -248,26 +258,68 @@
 
   #gameOverPanel h2{ color:var(--corallo); }
 
-  .diffRow{ display:flex; gap:0.5em; margin:0.6em 0 1em; }
-  .diffOpt{
-    flex:1; padding:0.6em 0.3em; border-radius:0.7em; text-align:center;
-    border:1px solid rgba(234,246,246,0.25); background:rgba(255,255,255,0.03);
-    font-size:0.78em; font-weight:700; cursor:pointer; color:var(--perla);
+  #startPanel{
+    background:
+      radial-gradient(120% 70% at 50% 0%, rgba(76,224,196,0.10), transparent 60%),
+      linear-gradient(180deg, var(--notte), var(--abisso));
+    text-align:center;
   }
-  .diffOpt.selected{ border-color:var(--bioluce); background:rgba(76,224,196,0.18); color:var(--bioluce); }
+  #startPanel .startIcon{
+    font-size:2.4em; line-height:1; margin-bottom:0.1em;
+    filter:drop-shadow(0 0 12px rgba(76,224,196,0.6));
+  }
+  #startPanel h2{
+    color:var(--bioluce); text-align:center; font-size:1.5em; margin:0 0 0.15em;
+    text-shadow:0 0 18px rgba(76,224,196,0.55);
+  }
+  #startPanel .startSub{
+    font-size:0.78em; opacity:0.6; margin:0 0 0.3em; color:var(--perla);
+  }
+  #startPanel .sectionLabel{
+    display:flex; align-items:center; gap:0.6em;
+    font-size:0.75em; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    opacity:0.75; text-align:center; margin:1.1em 0 0.6em; color:var(--bioluce);
+  }
+  #startPanel .sectionLabel::before,
+  #startPanel .sectionLabel::after{
+    content:''; flex:1; height:1px;
+    background:linear-gradient(90deg, transparent, rgba(76,224,196,0.4), transparent);
+  }
 
-  .sceneGrid{ display:grid; grid-template-columns:1fr 1fr; gap:0.6em; margin:0.6em 0 1.2em; }
+  .diffRow{ display:flex; gap:0.5em; margin:0 0 0.2em; }
+  .diffOpt{
+    flex:1; padding:0.7em 0.3em; border-radius:0.9em; text-align:center;
+    border:1px solid rgba(234,246,246,0.2); background:rgba(255,255,255,0.03);
+    font-size:0.78em; font-weight:700; cursor:pointer; color:var(--perla);
+    display:flex; flex-direction:column; align-items:center; gap:0.25em;
+    transition:transform 0.15s ease;
+  }
+  .diffOpt .diffIcon{ font-size:1.35em; line-height:1; }
+  .diffOpt.selected{
+    border-color:var(--bioluce); background:rgba(76,224,196,0.18); color:var(--bioluce);
+    box-shadow:0 0 16px rgba(76,224,196,0.35);
+    transform:translateY(-2px);
+  }
+
+  .sceneGrid{ display:grid; grid-template-columns:1fr 1fr; gap:0.7em; margin:0 0 0.3em; }
   .sceneOpt{
-    border-radius:0.9em; border:2px solid transparent; cursor:pointer;
-    padding:0.7em 0.5em; text-align:center; font-size:0.72em; font-weight:700;
-    color:var(--perla);
+    border-radius:1em; border:2px solid rgba(255,255,255,0.08); cursor:pointer;
+    padding:0.7em 0.5em; text-align:center; font-size:0.74em; font-weight:700;
+    color:var(--perla); background:rgba(255,255,255,0.02);
+    transition:transform 0.15s ease;
   }
-  .sceneOpt.selected{ border-color:#fff; }
+  .sceneOpt.selected{ border-color:#fff; box-shadow:0 0 18px rgba(255,255,255,0.18); transform:translateY(-2px); }
   .sceneSwatch{
-    width:100%; height:2.6em; border-radius:0.6em; margin-bottom:0.4em;
+    width:100%; height:2.8em; border-radius:0.7em; margin-bottom:0.5em;
+    display:flex; align-items:center; justify-content:center; font-size:1.3em;
+    border:1px solid rgba(255,255,255,0.12);
   }
-  #startPanel h2{ color:var(--bioluce); }
-  #startPanel .sectionLabel{ font-size:0.78em; opacity:0.7; text-align:left; margin:0.8em 0 0; }
+
+  #btnStartGame{
+    width:100%; font-size:1em; padding:0.85em 1em;
+    background:linear-gradient(135deg, var(--bioluce), #3AA98F);
+    box-shadow:0 4px 18px rgba(76,224,196,0.4);
+  }
 </style>
 </head>
 <body>
@@ -293,6 +345,15 @@
     <button id="btnSound">🔊 Effetti: On</button>
     <button id="btnMusic">🎵 Musica: On</button>
     <div class="musicSettings">
+      <div class="musicSelectRow">
+        <label for="musicStyleSelect"> Stile Musica</label>
+        <select id="musicStyleSelect">
+          <option value="lofi">☕ Lo-Fi Chill</option>
+          <option value="piano">🎹 Piano Deep</option>
+          <option value="pop">🫧 Bubble Pop</option>
+          <option value="abyss">🌌 Abyss Ambient</option>
+        </select>
+      </div>
       <div class="sliderRow">
         <span>Volume</span>
         <input type="range" id="musicVolume" min="0" max="0.5" step="0.01">
@@ -300,11 +361,11 @@
       </div>
       <div class="sliderRow">
         <span>Tempo</span>
-        <input type="range" id="musicTempo" min="60" max="100" step="2">
+        <input type="range" id="musicTempo" min="50" max="110" step="2">
         <span class="val" id="musicTempoVal"></span>
       </div>
       <div class="sliderRow">
-        <span>Basso&nbsp;e melodia</span>
+        <span>Basso &amp; Melodia</span>
         <input type="range" id="musicInstr" min="0" max="1.5" step="0.05">
         <span class="val" id="musicInstrVal"></span>
       </div>
@@ -358,8 +419,8 @@
   <div class="panel">
     <h2>Info</h2>
     <p>Meduse Merge — un gioco di fusione rilassante ispirato alle creature marine bioluminescenti.</p>
-    <p>Motore fisico: Matter.js. Musica lo-fi (pianoforte elettrico, basso, batteria, vinile) generata in tempo reale — nessun file audio esterno. Regolabile dal menu. Funziona interamente offline dopo il primo caricamento.</p>
-    <p>Versione 1.0</p>
+    <p>Motore fisico: Matter.js. Musica lo-fi/ambient generata procedurale in tempo reale (pianoforte, basso, sintesi e rumore vinile) — nessun file audio pesante caricato. Selezione stile e controlli nel menu.</p>
+    <p>Versione 1.1</p>
     <p style="opacity:0.7; margin-top:1em;">App creata da Miki by Claude</p>
     <div class="panelBtns">
       <button class="btn" id="closeInfo">Chiudi</button>
@@ -370,7 +431,9 @@
 <!-- SCELTA DIFFICOLTÀ E SCENARIO -->
 <div class="overlay" id="startOverlay">
   <div class="panel" id="startPanel">
-    <h2>🪼 Meduse Merge</h2>
+    <div class="startIcon">🪼</div>
+    <h2>Meduse Merge</h2>
+    <p class="startSub">Fai evolvere le creature marine unendole</p>
     <p class="sectionLabel">Difficoltà</p>
     <div class="diffRow" id="diffRow"></div>
     <p class="sectionLabel">Scenario marino</p>
@@ -403,6 +466,7 @@
   var LS_FONT = 'meduseMerge_fontScale';
   var LS_SOUND = 'meduseMerge_sound';
   var LS_MUSIC = 'meduseMerge_music';
+  var LS_MUS_STYLE = 'meduseMerge_musicStyle';
   var LS_MUS_VOL = 'meduseMerge_musicVolume';
   var LS_MUS_TEMPO = 'meduseMerge_musicTempo';
   var LS_MUS_INSTR = 'meduseMerge_musicInstr';
@@ -412,9 +476,9 @@
 
   /* ---------- Difficoltà ---------- */
   var DIFFICULTIES = {
-    easy:   { label:'Facile',    gravity:0.95, dropPool:3, topLine:42, graceMs:1700 },
-    medium: { label:'Medio',     gravity:1.15, dropPool:4, topLine:58, graceMs:1100 },
-    hard:   { label:'Difficile', gravity:1.35, dropPool:5, topLine:82, graceMs:750  }
+    easy:   { label:'Facile',    icon:'🐣', gravity:0.95, dropPool:3, topLine:42, graceMs:1700 },
+    medium: { label:'Medio',     icon:'🌊', gravity:1.15, dropPool:4, topLine:58, graceMs:1100 },
+    hard:   { label:'Difficile', icon:'🔥', gravity:1.35, dropPool:5, topLine:82, graceMs:750  }
   };
   var DIFF_ORDER = ['easy','medium','hard'];
   var currentDifficultyId = localStorage.getItem(LS_DIFF) || 'medium';
@@ -423,10 +487,10 @@
 
   /* ---------- Scenari marini ---------- */
   var SCENES = {
-    reef:  { label:'Barriera Corallina', bgTop:'#123249', bgBottom:'#0B1E2D', glow:'76,224,196',  seaweed:'76,224,196',  coral:'76,224,196',  plankton:'185,251,232', ray:'255,255,255', mode:'normal' },
-    kelp:  { label:'Foresta di Alghe',   bgTop:'#123B27', bgBottom:'#07140D', glow:'111,224,160', seaweed:'111,224,160', coral:'111,224,160', plankton:'200,255,220', ray:'255,255,255', mode:'dense'  },
-    abyss: { label:'Abisso Profondo',    bgTop:'#141A3D', bgBottom:'#03040F', glow:'142,124,224', seaweed:'142,124,224', coral:'142,124,224', plankton:'190,180,255', ray:'170,150,255', mode:'sparse' },
-    cave:  { label:'Grotta Luminosa',    bgTop:'#33163F', bgBottom:'#140823', glow:'230,103,194', seaweed:'230,103,194', coral:'255,159,69',  plankton:'255,200,240', ray:'230,103,194', mode:'crystal' }
+    reef:  { label:'Barriera Corallina', icon:'🪸', bgTop:'#123249', bgBottom:'#0B1E2D', glow:'76,224,196',  seaweed:'76,224,196',  coral:'76,224,196',  plankton:'185,251,232', ray:'255,255,255', mode:'normal' },
+    kelp:  { label:'Foresta di Alghe',   icon:'🌿', bgTop:'#123B27', bgBottom:'#07140D', glow:'111,224,160', seaweed:'111,224,160', coral:'111,224,160', plankton:'200,255,220', ray:'255,255,255', mode:'dense'  },
+    abyss: { label:'Abisso Profondo',    icon:'🌌', bgTop:'#141A3D', bgBottom:'#03040F', glow:'142,124,224', seaweed:'142,124,224', coral:'142,124,224', plankton:'190,180,255', ray:'170,150,255', mode:'sparse' },
+    cave:  { label:'Grotta Luminosa',    icon:'💎', bgTop:'#33163F', bgBottom:'#140823', glow:'230,103,194', seaweed:'230,103,194', coral:'255,159,69',  plankton:'255,200,240', ray:'230,103,194', mode:'crystal' }
   };
   var SCENE_ORDER = ['reef','kelp','abyss','cave'];
   var currentSceneId = localStorage.getItem(LS_SCENE) || 'reef';
@@ -463,7 +527,7 @@
       var d = DIFFICULTIES[id];
       var el = document.createElement('div');
       el.className = 'diffOpt' + (id === selectedDiffId ? ' selected' : '');
-      el.textContent = d.label;
+      el.innerHTML = '<span class="diffIcon">' + d.icon + '</span><span>' + d.label + '</span>';
       el.addEventListener('click', function(){
         selectedDiffId = id;
         buildStartOverlay();
@@ -479,6 +543,7 @@
       el.className = 'sceneOpt' + (id === selectedSceneId ? ' selected' : '');
       var sw = document.createElement('div');
       sw.className = 'sceneSwatch';
+      sw.textContent = s.icon;
       sw.style.background = 'linear-gradient(135deg, ' + s.bgTop + ', ' + s.bgBottom + ')';
       sw.style.boxShadow = '0 0 10px rgba(' + s.glow + ',0.5)';
       el.appendChild(sw);
@@ -496,10 +561,12 @@
   var best = parseInt(localStorage.getItem(LS_BEST) || '0', 10);
   var soundOn = localStorage.getItem(LS_SOUND) !== 'off';
   var musicOn = localStorage.getItem(LS_MUSIC) !== 'off';
+  var currentMusicStyle = localStorage.getItem(LS_MUS_STYLE) || 'lofi';
   var fontScale = parseFloat(localStorage.getItem(LS_FONT) || '1');
   document.documentElement.style.setProperty('--font-scale', fontScale);
 
   var musicParams = {
+    style: currentMusicStyle,
     volume: parseFloat(localStorage.getItem(LS_MUS_VOL) || '0.24'),
     tempo: parseFloat(localStorage.getItem(LS_MUS_TEMPO) || '76'),
     instr: parseFloat(localStorage.getItem(LS_MUS_INSTR) || '0.8'),
@@ -510,6 +577,19 @@
   document.getElementById('bestVal').textContent = best;
   document.getElementById('btnSound').textContent = (soundOn ? '🔊 Effetti: On' : '🔇 Effetti: Off');
   document.getElementById('btnMusic').textContent = (musicOn ? '🎵 Musica: On' : '🎵 Musica: Off');
+
+  var styleSelect = document.getElementById('musicStyleSelect');
+  styleSelect.value = musicParams.style;
+  styleSelect.addEventListener('change', function(){
+    musicParams.style = this.value;
+    localStorage.setItem(LS_MUS_STYLE, this.value);
+    if(this.value === 'pop') { musicParams.tempo = 92; }
+    else if(this.value === 'abyss') { musicParams.tempo = 54; }
+    else { musicParams.tempo = 76; }
+    document.getElementById('musicTempo').value = musicParams.tempo;
+    document.getElementById('musicTempoVal').textContent = musicParams.tempo;
+    localStorage.setItem(LS_MUS_TEMPO, musicParams.tempo);
+  });
 
   var musicSliderIds = [
     ['musicVolume', 'volume'], ['musicTempo', 'tempo'],
@@ -640,26 +720,70 @@
   }
   function soundGameOver(){ playTone(180, 0.5, 'sawtooth', 0.1); }
 
-  /* ---------- Musica ambientale lo-fi generativa ---------- */
+  /* ---------- Musica ambientale generativa modulare ---------- */
   var musicStarted = false;
   var musicLoopTimer = null;
 
-  // Progressione di accordi jazz-lofi: Fmaj7 - Em7 - Dm7 - G7
-  var chords = [
-    [174.61, 220.00, 261.63, 329.63],
-    [164.81, 196.00, 246.94, 293.66],
-    [146.83, 174.61, 220.00, 261.63],
-    [196.00, 246.94, 293.66, 349.23]
-  ];
+  // Stili di accordi e configurazioni ritmiche
+  var MUSIC_STYLES = {
+    lofi: {
+      chords: [
+        [174.61, 220.00, 261.63, 329.63], // Fmaj7
+        [164.81, 196.00, 246.94, 293.66], // Em7
+        [146.83, 174.61, 220.00, 261.63], // Dm7
+        [196.00, 246.94, 293.66, 349.23]  // G7
+      ],
+      kick: [1,0,0,0,1,0,0,0],
+      snare: [0,0,0,0,1,0,0,0],
+      hihat: [1,1,1,1,1,1,1,1],
+      hihatOpen: [0,0,1,0,0,0,1,0],
+      shaker: [0,1,0,1,0,1,0,1]
+    },
+    piano: {
+      chords: [
+        [130.81, 164.81, 196.00, 246.94], // Cmaj7
+        [110.00, 130.81, 164.81, 196.00], // Am7
+        [146.83, 174.61, 220.00, 261.63], // Dm7
+        [196.00, 246.94, 293.66, 349.23]  // G7
+      ],
+      kick: [1,0,0,0,0,0,1,0],
+      snare: [0,0,0,0,0,0,0,0],
+      hihat: [1,0,1,0,1,0,1,0],
+      hihatOpen: [0,0,0,0,0,0,0,0],
+      shaker: [0,0,0,0,0,0,0,0]
+    },
+    pop: {
+      chords: [
+        [261.63, 329.63, 392.00, 493.88], // Cmaj7
+        [220.00, 261.63, 329.63, 392.00], // Am7
+        [174.61, 220.00, 261.63, 329.63], // Fmaj7
+        [196.00, 246.94, 293.66, 392.00]  // G
+      ],
+      kick: [1,0,0,0,1,0,0,0],
+      snare: [0,0,1,0,0,0,1,0],
+      hihat: [1,1,1,1,1,1,1,1],
+      hihatOpen: [0,0,1,0,0,1,1,0],
+      shaker: [1,1,1,1,1,1,1,1]
+    },
+    abyss: {
+      chords: [
+        [110.00, 164.81, 220.00, 277.18], // Am/A9
+        [98.00,  146.83, 196.00, 246.94], // G
+        [87.31,  130.81, 174.61, 220.00], // F
+        [98.00,  146.83, 196.00, 293.66]  // Gsus
+      ],
+      kick: [1,0,0,0,0,0,0,0],
+      snare: [0,0,0,0,0,0,0,0],
+      hihat: [1,0,0,0,1,0,0,0],
+      hihatOpen: [0,0,0,0,0,0,0,0],
+      shaker: [0,0,0,0,0,0,0,0]
+    }
+  };
+
   var leadPhrases = {
     1: [{step:0, f:587.33}, {step:2, f:523.25}, {step:4, f:440.00}, {step:6, f:392.00}],
     3: [{step:0, f:392.00}, {step:2, f:440.00}, {step:4, f:493.88}, {step:6, f:587.33}]
   };
-  var kickPattern   = [1,0,0,0,1,0,0,0];
-  var snarePattern  = [0,0,0,0,1,0,0,0];
-  var hihatPattern  = [1,1,1,1,1,1,1,1];
-  var hihatOpen     = [0,0,1,0,0,0,1,0];
-  var shakerPattern = [0,1,0,1,0,1,0,1];
 
   function musicEp(freq, time, dur, vol){
     var g = actx.createGain();
@@ -667,7 +791,7 @@
     g.gain.exponentialRampToValueAtTime(vol, time + 0.015);
     g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
     var filt = actx.createBiquadFilter();
-    filt.type = 'lowpass'; filt.frequency.value = 2200;
+    filt.type = 'lowpass'; filt.frequency.value = musicParams.style === 'abyss' ? 900 : 2200;
     g.connect(filt); filt.connect(musicMasterGain);
     [ {type:'sine', mult:1, vol:1}, {type:'triangle', mult:1.003, vol:0.4} ].forEach(function(v){
       var o = actx.createOscillator();
@@ -682,7 +806,7 @@
 
   function musicBass(freq, time, dur, vol){
     var o = actx.createOscillator();
-    o.type = 'sine';
+    o.type = musicParams.style === 'pop' ? 'triangle' : 'sine';
     o.frequency.value = freq;
     var filt = actx.createBiquadFilter();
     filt.type = 'lowpass'; filt.frequency.value = 420;
@@ -747,22 +871,25 @@
 
   function scheduleMusicLoop(){
     if(!musicStarted) return;
+    var st = MUSIC_STYLES[musicParams.style] || MUSIC_STYLES.lofi;
     var stepDur = 60 / musicParams.tempo / 2;
-    var swing = stepDur * 0.18;
+    var swing = (musicParams.style === 'lofi') ? stepDur * 0.18 : 0;
     var now = actx.currentTime + 0.05;
 
     for(var bar=0; bar<4; bar++){
-      var chord = chords[bar];
+      var chord = st.chords[bar];
       var barStart = now + bar*8*stepDur;
 
       chord.forEach(function(f, idx){
         musicEp(f, barStart + 0.01, 2.6, 0.11 - idx*0.012);
       });
       musicBass(chord[0]/2, barStart, 1.5, 0.16);
-      musicBass(chord[0]/2, barStart + 4*stepDur, 1.5, 0.14);
-      musicBass(chord[2]/2, barStart + 7*stepDur, 0.9, 0.10);
+      if(musicParams.style !== 'abyss'){
+        musicBass(chord[0]/2, barStart + 4*stepDur, 1.5, 0.14);
+        musicBass(chord[2]/2, barStart + 7*stepDur, 0.9, 0.10);
+      }
 
-      if(leadPhrases[bar]){
+      if(leadPhrases[bar] && musicParams.style !== 'abyss'){
         leadPhrases[bar].forEach(function(n){
           musicLead(n.f, barStart + n.step*stepDur, stepDur*1.7, 0.07);
         });
@@ -770,10 +897,10 @@
 
       for(var s=0; s<8; s++){
         var t = barStart + s*stepDur + (s%2===1 ? swing : 0);
-        if(kickPattern[s]) musicKick(t);
-        if(snarePattern[s]) musicSnare(t);
-        if(hihatPattern[s]) musicHihat(t, hihatOpen[s]);
-        if(shakerPattern[s]) musicShaker(t + stepDur*0.4);
+        if(st.kick[s]) musicKick(t);
+        if(st.snare[s]) musicSnare(t);
+        if(st.hihat[s]) musicHihat(t, st.hihatOpen[s]);
+        if(st.shaker[s]) musicShaker(t + stepDur*0.4);
       }
     }
 
@@ -1093,7 +1220,6 @@
   resizeBubbleCanvas();
   window.addEventListener('resize', resizeBubbleCanvas);
 
-  // due profondità di bolle: lontane (piccole, lente, opache) e vicine (grandi, veloci, luminose)
   for(var i=0;i<16;i++){
     bubbleParticles.push({
       x: Math.random(), y: Math.random(),
@@ -1128,7 +1254,6 @@
     bctx.fill();
 
     if(sc.mode === 'crystal'){
-      // cristalli luminosi al posto dei coralli
       var crystals = [0.06, 0.22, 0.5, 0.74, 0.9];
       crystals.forEach(function(cx, i){
         var px = cx*w;
@@ -1225,7 +1350,6 @@
   function drawTankBackground(now){
     var sc = currentSceneColors;
 
-    // raggi di luce che filtrano dall'alto
     ctx.save();
     var sway = Math.sin(now/4200)*14;
     var rayCount = sc.mode === 'sparse' ? 2 : 3;
@@ -1246,7 +1370,6 @@
     ctx.restore();
 
     if(sc.mode === 'crystal'){
-      // cristalli luminosi sul fondo della vasca
       ctx.save();
       var crystalSpots = [ {x:26,h:60}, {x:80,h:88}, {x:TANK_W-34,h:76}, {x:TANK_W-92,h:52} ];
       crystalSpots.forEach(function(s, i){
@@ -1261,7 +1384,6 @@
       });
       ctx.restore();
     } else if(sc.mode !== 'sparse') {
-      // alghe sul fondo della vasca
       ctx.save();
       var strands = sc.mode === 'dense'
         ? [ {x:18,h:70}, {x:56,h:100}, {x:110,h:60}, {x:TANK_W-140,h:85}, {x:TANK_W-38,h:88}, {x:TANK_W-84,h:60} ]
@@ -1279,7 +1401,6 @@
       ctx.restore();
     }
 
-    // plancton fluttuante
     ctx.save();
     ctx.fillStyle = 'rgba(' + sc.plankton + ',0.35)';
     planktonMotes.forEach(function(p){
@@ -1303,7 +1424,6 @@
     ctx.save();
     ctx.translate(x, y);
 
-    // glow
     var grad = ctx.createRadialGradient(0,0, r*0.2, 0,0, r*1.6);
     grad.addColorStop(0, lv.glow);
     grad.addColorStop(1, 'rgba(0,0,0,0)');
@@ -1312,7 +1432,6 @@
     ctx.arc(0,0,r*1.6,0,Math.PI*2);
     ctx.fill();
 
-    // body (squash & stretch dome)
     ctx.save();
     ctx.scale(1+squish, 1-squish);
     ctx.beginPath();
@@ -1328,7 +1447,6 @@
     ctx.fill();
     ctx.restore();
 
-    // tentacles
     ctx.strokeStyle = lv.color;
     ctx.globalAlpha = 0.8;
     ctx.lineWidth = Math.max(1.5, r*0.06);
@@ -1348,16 +1466,14 @@
     }
     ctx.globalAlpha = 1;
 
-    // eyes
     ctx.fillStyle = '#0B1E2D';
     var ex = r*0.28, ey = -r*0.15;
     ctx.beginPath(); ctx.arc(-ex, ey, r*0.09, 0, Math.PI*2); ctx.fill();
     ctx.beginPath(); ctx.arc(ex, ey, r*0.09, 0, Math.PI*2); ctx.fill();
-    // blush
+
     ctx.fillStyle = 'rgba(255,255,255,0.35)';
     ctx.beginPath(); ctx.ellipse(0, -r*0.4, r*0.35, r*0.18, 0, 0, Math.PI*2); ctx.fill();
 
-    // numero di livello discreto (evita ambiguità tra colori simili)
     ctx.fillStyle = 'rgba(11,30,45,0.4)';
     ctx.font = '600 ' + Math.max(8, r*0.32) + 'px Quicksand, sans-serif';
     ctx.textAlign = 'center';
@@ -1393,14 +1509,12 @@
 
     drawTankBackground(performance.now());
 
-    // water shimmer bands
     for(var i=0;i<3;i++){
       ctx.fillStyle = 'rgba(' + currentSceneColors.glow + ',' + (0.02+i*0.01) + ')';
       var yOff = ((performance.now()/40 + i*140) % (TANK_H+80)) - 80;
       ctx.fillRect(0, yOff, TANK_W, 40);
     }
 
-    // top danger line
     ctx.save();
     ctx.strokeStyle = 'rgba(255,111,89,0.55)';
     ctx.setLineDash([6,6]);
@@ -1411,7 +1525,6 @@
     ctx.stroke();
     ctx.restore();
 
-    // aim guide + ghost jelly
     if(!gameOver && !paused){
       ctx.save();
       ctx.strokeStyle = 'rgba(234,246,246,0.25)';
@@ -1438,10 +1551,7 @@
       ctx.restore();
     }
 
-    // jellies
     getMovableBodies().forEach(drawJelly);
-
-    // particles
     drawParticles(16.6);
 
     ctx.restore();
@@ -1466,13 +1576,12 @@
   }
   requestAnimationFrame(loop);
 
-  /* ---------- Avvio: applica difficoltà/scenario salvati e mostra la scelta iniziale ---------- */
+  /* ---------- Avvio ---------- */
   applyDifficulty(currentDifficultyId);
   applyScene(currentSceneId);
   buildStartOverlay();
   openOverlay('startOverlay');
 
-  /* ---------- Sblocco audio al primo tocco (policy browser) ---------- */
   document.addEventListener('pointerdown', function unlock(){
     ensureAudio();
     if(actx && actx.state === 'suspended') actx.resume();
@@ -1480,7 +1589,6 @@
     document.removeEventListener('pointerdown', unlock);
   });
 
-  /* ---------- Service worker ---------- */
   if('serviceWorker' in navigator){
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('./sw.js').catch(function(){});

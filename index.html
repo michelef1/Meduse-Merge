@@ -452,6 +452,7 @@
     <p>Punteggio finale: <b id="finalScore">0</b></p>
     <p id="newRecordMsg" style="display:none; color:var(--bioluce);">Nuovo record! 🎉</p>
     <div class="panelBtns">
+      <button class="btn secondary" id="btnShare">📤 Condividi</button>
       <button class="btn" id="btnRetry">Riprova</button>
     </div>
   </div>
@@ -674,6 +675,15 @@
   document.getElementById('btnRetry').addEventListener('click', function(){
     closeOverlay('gameOverOverlay');
     resetGame();
+  });
+  document.getElementById('btnShare').addEventListener('click', function(){
+    var text = 'Ho fatto ' + score + ' punti su Meduse Merge! 🪼 Il mio record è ' + best + '. Prova a battermi!';
+    if(navigator.share){
+      navigator.share({ title: 'Meduse Merge', text: text }).catch(function(){});
+    } else {
+      var waUrl = 'https://wa.me/?text=' + encodeURIComponent(text);
+      window.open(waUrl, '_blank');
+    }
   });
   document.getElementById('btnChangeSetup').addEventListener('click', function(){
     menuDropdown.classList.remove('show');

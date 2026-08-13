@@ -714,7 +714,7 @@
   });
 
   function shareScore(){
-    var text = 'Ho fatto ' + score + ' punti su Meduse Merge! 🪼 Il mio record è ' + best + '. Prova a battermi!';
+    var text = '🪼 Il mio record su Meduse Merge è ' + best + ' punti. Prova a battermi!';
     if(navigator.share){
       navigator.share({ title: 'Meduse Merge', text: text }).catch(function(){});
     } else {

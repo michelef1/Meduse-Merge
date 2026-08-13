@@ -1,9 +1,10 @@
 // Incrementa CACHE_NAME ad ogni nuovo deploy per evitare contenuti obsoleti su Android
-const CACHE_NAME = 'meduse-merge-v10';
+const CACHE_NAME = 'meduse-merge-v3';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
+  './matter.min.js',
   './icons/icon-192.png',
   './icons/icon-512.png'
 ];

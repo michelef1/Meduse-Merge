@@ -1225,17 +1225,17 @@
   }
 
   /* ---------- Game over ---------- */
-  function checkGameOver(){
+  function checkGameOver(dt){
     var bodies = getMovableBodies();
     var anyOver = false;
     bodies.forEach(function(b){
       var top = b.position.y - b.circleRadius;
       if(top < TOP_LINE){
         // sopra la linea: accumula, indipendentemente da urti/vibrazioni momentanee
-        b.plugin.restTimer = (b.plugin.restTimer||0) + 16.6;
+        b.plugin.restTimer = (b.plugin.restTimer||0) + dt;
       } else {
         // sotto la linea: scarica gradualmente (non azzera di colpo per un urto passeggero)
-        b.plugin.restTimer = Math.max(0, (b.plugin.restTimer||0) - 40);
+        b.plugin.restTimer = Math.max(0, (b.plugin.restTimer||0) - dt*2.4);
       }
       if(b.plugin.restTimer > GRACE_MS) anyOver = true;
     });
@@ -1610,23 +1610,24 @@
     }
 
     getMovableBodies().forEach(drawJelly);
-    drawParticles(16.6);
+    drawParticles(frameDt);
 
     ctx.restore();
   }
 
   /* ---------- Loop principale ---------- */
   var lastTime = performance.now();
+  var frameDt = 16.6;
   function loop(now){
-    var dt = Math.min(32, now - lastTime);
+    frameDt = Math.min(32, now - lastTime);
     lastTime = now;
 
     drawBubbles();
 
     if(!paused && !gameOver){
-      Engine.update(engine, dt);
+      Engine.update(engine, frameDt);
       processMerges();
-      checkGameOver();
+      checkGameOver(frameDt);
     }
     drawScene();
 

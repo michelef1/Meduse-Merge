@@ -96,6 +96,10 @@
   .statBox.best{ border-color:rgba(255,209,102,0.4); }
   .statBox.best b{ color:#FFD166; text-shadow:0 0 12px rgba(255,209,102,0.65); }
   .statBox b.bump{ animation:statBump 0.4s ease; }
+  .diffTag{
+    font-size:0.55em; opacity:0.7; font-weight:700; margin-top:-0.1em;
+    display:block; white-space:nowrap;
+  }
   @keyframes statBump{
     0%{ transform:scale(1); }
     45%{ transform:scale(1.22); }
@@ -358,6 +362,7 @@
             </svg>
           </button>
           <span class="lbl">🏆 Record</span><b id="bestVal">0</b>
+          <span class="diffTag" id="bestDiffTag"></span>
         </div>
       </div>
       <button id="menuBtn" aria-label="Menu">⋮</button>
@@ -501,6 +506,7 @@
 
   /* ---------- Persistenza & preferenze ---------- */
   var LS_BEST = 'meduseMerge_highscore';
+  var LS_BEST_DIFF = 'meduseMerge_bestDifficulty';
   var LS_FONT = 'meduseMerge_fontScale';
   var LS_SOUND = 'meduseMerge_sound';
   var LS_MUSIC = 'meduseMerge_music';
@@ -597,6 +603,7 @@
   }
 
   var best = parseInt(localStorage.getItem(LS_BEST) || '0', 10);
+  var bestDifficulty = localStorage.getItem(LS_BEST_DIFF) || currentDifficultyId;
   var soundOn = localStorage.getItem(LS_SOUND) !== 'off';
   var musicOn = localStorage.getItem(LS_MUSIC) !== 'off';
   var currentMusicStyle = localStorage.getItem(LS_MUS_STYLE) || 'lofi';
@@ -612,7 +619,14 @@
   };
   var musicMasterGain = null, musicInstrGain = null, musicVinylGain = null;
 
+  function updateBestDiffTag(){
+    var d = DIFFICULTIES[bestDifficulty];
+    var el = document.getElementById('bestDiffTag');
+    if(el && d) el.textContent = d.icon + ' ' + d.label;
+  }
+
   document.getElementById('bestVal').textContent = best;
+  updateBestDiffTag();
   document.getElementById('btnSound').textContent = (soundOn ? '🔊 Effetti: On' : '🔇 Effetti: Off');
   document.getElementById('btnMusic').textContent = (musicOn ? '🎵 Musica: On' : '🎵 Musica: Off');
 
@@ -714,7 +728,8 @@
   });
 
   function shareScore(){
-    var text = '🪼 Il mio record su Meduse Merge è ' + best + ' punti. Prova a battermi!';
+    var diffLabel = (DIFFICULTIES[bestDifficulty] || {}).label || '';
+    var text = '🪼 Il mio record su Meduse Merge è ' + best + ' punti (difficoltà: ' + diffLabel + '). Prova a battermi!';
     if(navigator.share){
       navigator.share({ title: 'Meduse Merge', text: text }).catch(function(){});
     } else {
@@ -1081,7 +1096,9 @@
     bumpStat('scoreVal');
     if(score > best){
       best = score;
+      bestDifficulty = currentDifficultyId;
       document.getElementById('bestVal').textContent = best;
+      updateBestDiffTag();
       bumpStat('bestVal');
     }
   }
@@ -1250,6 +1267,7 @@
     document.getElementById('newRecordMsg').style.display = newRecord ? 'block' : 'none';
     if(score > parseInt(localStorage.getItem(LS_BEST)||'0',10)){
       localStorage.setItem(LS_BEST, score);
+      localStorage.setItem(LS_BEST_DIFF, currentDifficultyId);
     }
     openOverlay('gameOverOverlay');
   }

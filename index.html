@@ -1666,6 +1666,16 @@
     document.removeEventListener('pointerdown', unlock);
   });
 
+  /* ---------- Pausa audio quando l'app va in background ---------- */
+  document.addEventListener('visibilitychange', function(){
+    if(!actx) return;
+    if(document.hidden){
+      actx.suspend();
+    } else if(musicOn || soundOn){
+      actx.resume();
+    }
+  });
+
   if('serviceWorker' in navigator){
     window.addEventListener('load', function(){
       navigator.serviceWorker.register('./sw.js').catch(function(){});
